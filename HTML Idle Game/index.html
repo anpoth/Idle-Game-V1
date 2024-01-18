@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head> 
+    <title>Idle Game v1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    <script src="app.js"></script>
+</head>
+<body>
+    <div class="content">
+        <!-- Currency section of screen -->
+        <div class="currency">
+            <p id="money"><img id="coin" src="graphics\coin.png"> $0.00</p>
+        </div>
+        <!-- Inventory section of screen -->
+        <div class="inventory">
+                <p id="axes"><img id="axePic" src="graphics\axe.png"> 1</p>
+                <p id="pickaxes"></p>
+                <br>
+                <p id="choppers"></p>
+                <p id="miners"></p>
+                <br>
+                <p id="logs"><img id="logPic" src="graphics\log.png"> 0</p>
+                <p id="stone"></p>
+                <p id="iron"></p>
+                
+        </div>
+        <!-- Menu section of screen -->
+        <div class="menus">
+            <!-- Main Action Buttons-->
+            <div class="main">
+                <button id="chop" title="Chop some Logs">Chop Log</button>
+                <button id="mineStone" title="Mine some Stone">Mine For Stone</button>
+                <button id="mineIron" title="Mine some Iron">Mine For Iron</button>
+                <button id="visit" title="Go to the Market place to sell materials">Marketplace</button>
+                <button id="visitForge" title="Go to the Forge to craft items and upgrades">Forge</button>
+            </div>
+
+            <!-- Marketplace screen -->
+            <div class="marketplace">
+                <div class="return">
+                    <!-- Return back to main screen-->
+                    <button id="return">Return</button>
+                </div>
+
+                <!-- Sell Buttons-->
+                <div class="sellButtons">
+                    <button id="sell1" title="1 log = 1 coin">Sell 1 log</button>
+                    <button id="sell10">Sell 10 logs</button>
+                    <button id="sellAll">Sell All logs</button>
+                    <button id="sell1Stone" title="1 stone = 2 coins">Sell 1 stone</button>
+                    <button id="sell10Stone">Sell 10 stones</button>
+                    <button id="sellAllStone">Sell All stones</button>
+                    <button id="sell1Iron" title="1 iron ore = 5 coins">Sell 1 iron ore</button>
+                    <button id="sell10Iron">Sell 10 iron ores</button>
+                    <button id="sellAllIron">Sell All iron ores</button>
+                </div>
+                
+                <!-- Upgrades section of Marketplace-->
+                <div class="upgrades">
+                    <button id="autoChopper" title="Auto Chopper will chop logs for you! Rate: 1/sec">Buy 1 Auto Chopper [$100]</button>
+                    <button id="autoMine" title="Atuo Miner will mine stone for you! Rate: 1/sec">Buy 1 Auto Miner [$200] [100 Stone]</button>
+                </div>
+                
+                <!-- Item Buttons-->
+                <div class="items">
+                    <button id="buyAxe" title="More axes means more logs per chop!">Buy 1 Axe [$25]</button>
+                    <button id="buyPickaxe" title="Pickaxes can mine stone!">Buy 1 Pickaxe [$50]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
