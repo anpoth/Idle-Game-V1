@@ -10,13 +10,14 @@ $(document).ready(function(){
     var pickaxes = 0;
     var axes = 1;
     // Currency
-    var money = 1000;
+    var money = 0;
     // Counters
     var logsPlus = 1;
     var stonePlus = 1;
     var ironPlus = 1;
     var autoLogPlus = 0;
     var autoStonePlus = 0;
+    var autoIronPlus = 0;
     // Prices
     var autoMinePrice = 200;
     var autoChopperPrice = 100;
@@ -46,6 +47,7 @@ $(document).ready(function(){
         stone += autoStonePlus;
         changeInventory();
         changeMarket();
+        changeForge();
     }, baseGameTime);
     // #endregion
 
@@ -161,6 +163,7 @@ $(document).ready(function(){
         $("#autoChopper").html("Buy 1 Auto Chopper [$" + autoChopperPrice.toFixed(2) + "]");
         changeInventory();
         changeMarket();
+        changeForge();
     })
 
     $("#autoMine").click(function(){
@@ -172,6 +175,7 @@ $(document).ready(function(){
         $("#autoMine").html("Buy 1 Auto Miner [$" + autoMinePrice.toFixed(2) + "] [" + autoMineStone.toFixed(2) + "] stone");
         changeInventory();
         changeMarket();
+        changeForge();
     })
 
     // #endregion
@@ -205,9 +209,19 @@ $(document).ready(function(){
         changeMarket();
     })
 
-    $("#return").click(function(){
-        manu = switchMenu("main");
+    $("#visitForge").click(function(){
+        menu = switchMenu("forge");
+        changeForge();
     })
+
+    $("#return").click(function(){
+        menu = switchMenu("main");
+    })
+
+    $("#return2").click(function(){
+        menu = switchMenu("main");
+    })
+
     // #endregion
 
     // Function to show inventory and current resources
@@ -216,27 +230,30 @@ $(document).ready(function(){
         $("#money").html("<img id='coin' src='graphics\\coin.png'> $" + money.toFixed(2));
         
         if(axes > 1){
-            $("#axes").html("<img src='graphics\\axe.png' alt='axe image'> " + axes);
+            $("#axes").html(axes.toFixed(0));
         }else{
-            $("#axes").html("<img src='graphics\\axe.png' alt='axe image'> 1");
+            $("#axes").html("1");
         }
 
         if(autoLogPlus >= 1){
             $("#choppers").html("<img src='graphics\\chopper.png' alt='chopper image'> " + autoLogPlus);
             $("#choppers").css("visibility", "visible");
+            $("#chopperLbl").css("visibility", "visible");
         }else{
             $("#choppers").css("visibility", "hidden");
+            $("#chopperLbl").css("visibility", "hidden");
         }
 
         if(logs > 0){
-            $("#logs").html("<img src='graphics\\log.png' alt='log image'> " + logs);
+            $("#logs").html(logs.toFixed(0));
         }else{
-            $("#logs").html("<img src='graphics\\log.png' alt='log image'> " + logs);
+            $("#logs").html(logs.toFixed(0));
         }
 
         if(pickaxes > 0){
-            $("#pickaxes").html("<img src='graphics\\pickaxe.png' alt='pickaxe image'> " + pickaxes);
+            $("#pickaxes").html(pickaxes.toFixed(0));
             $("#mineStone").css("visibility", "visible");
+            $("#pickaxePic").css("visibility", "visible");
         }else{
             $("#pickaxes").html("");
             $("#mineStone").css("visibility", "hidden");
@@ -251,21 +268,24 @@ $(document).ready(function(){
         if(autoStonePlus >= 1){
             $("#miners").html("<img src='graphics\\miner.png' alt='miner image'> " + autoStonePlus);
             $("#miner").css("visibility", "visible");
+            $("#minerLbl").css("visibility", "visible");
         }else{
             $("#miner").css("visibility", "hidden");
+            $("#minerLbl").css("visibility", "hidden");
         }
 
         if(stone > 0){
-            $("#stone").html("<img src='graphics\\stone.png' alt='stone image'> " + stone);
+            $("#stone").html(stone.toFixed(0));
+            $("#stonePic").css("visibility", "visible");
         }else{
             $("#stone").html("");
         }
 
         if(iron > 0){
-            $("#iron").html("<img src='graphics\\ironOre.png' alt='ironOre image'> " + iron.toFixed(0));
+            $("#iron").html(iron.toFixed(0));
+            $("#ironPic").css("visibility", "visible");
         }else{
             $("#iron").html("");
-            $("#visitForge").css("visibility", "hidden");
         }
 
         if(iron >= 100){
@@ -277,59 +297,59 @@ $(document).ready(function(){
     // Function to update market screen to show correct buttons
     // #region
     function changeMarket(){
-        if(logs > 0){
-            $("#sellAll").css("display", "block");
-        }else{
-            $("#sellAll").css("display", "none");
-        }
+        // if(logs > 0){
+        //     $("#sellAll").css("display", "block");
+        // }else{
+        //     $("#sellAll").css("display", "none");
+        // }
 
-        if(logs >= 1){
-            $("#sell1").css("display", "block");
-        }else{
-            $("#sell1").css("display", "none");
-        }
+        // if(logs >= 1){
+        //     $("#sell1").css("display", "block");
+        // }else{
+        //     $("#sell1").css("display", "none");
+        // }
 
-        if(logs >= 10){
-            $("#sell10").css("display", "block");
-        }else{
-            $("#sell10").css("display", "none");
-        }
+        // if(logs >= 10){
+        //     $("#sell10").css("display", "block");
+        // }else{
+        //     $("#sell10").css("display", "none");
+        // }
 
-        if(stone > 0){
-            $("#sellAllStone").css("display", "block");
-        }else{
-            $("#sellAllStone").css("display", "none");
-        }
+        // if(stone > 0){
+        //     $("#sellAllStone").css("display", "block");
+        // }else{
+        //     $("#sellAllStone").css("display", "none");
+        // }
 
-        if(stone >= 1){
-            $("#sell1Stone").css("display", "block");
-        }else{
-            $("#sell1Stone").css("display", "none");
-        }
+        // if(stone >= 1){
+        //     $("#sell1Stone").css("display", "block");
+        // }else{
+        //     $("#sell1Stone").css("display", "none");
+        // }
 
-        if(stone >= 10){
-            $("#sell10Stone").css("display", "block");
-        }else{
-            $("#sell10Stone").css("display", "none");
-        }
+        // if(stone >= 10){
+        //     $("#sell10Stone").css("display", "block");
+        // }else{
+        //     $("#sell10Stone").css("display", "none");
+        // }
 
-        if(iron >= 1){
-            $("#sell1Iron").css("display", "block");
-        }else{
-            $("#sell1Iron").css("display", "none");
-        }
+        // if(iron >= 1){
+        //     $("#sell1Iron").css("display", "block");
+        // }else{
+        //     $("#sell1Iron").css("display", "none");
+        // }
 
-        if(iron >= 10){
-            $("#sell10Iron").css("display", "block");
-        }else{
-            $("#sell10Iron").css("display", "none");
-        }
+        // if(iron >= 10){
+        //     $("#sell10Iron").css("display", "block");
+        // }else{
+        //     $("#sell10Iron").css("display", "none");
+        // }
         
-        if(iron > 0){
-            $("#sellAllIron").css("display", "block");
-        }else{
-            $("#sellAllIron").css("display", "none");
-        }
+        // if(iron > 0){
+        //     $("#sellAllIron").css("display", "block");
+        // }else{
+        //     $("#sellAllIron").css("display", "none");
+        // }
 
         if(money >= autoChopperPrice){
             autoChopperButton.disabled = false;
@@ -362,11 +382,20 @@ $(document).ready(function(){
     }
     // #endregion
 
+    // Function to update Forge screen
+    // #region
+    function changeForge(){
+
+    }
+
+    // #endregion
+
+
     // Menu Switcher
     // #region
     function switchMenu(menu){
         $(".menus").children().css("display", "none");
-        $("." + menu).css("display", "grid");
+        $("." + menu).css("display", "block");
         return menu;
     }
     // #endregion
